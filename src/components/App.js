@@ -14,15 +14,13 @@ class App extends Component {
             <div>
                 <BrowserRouter>
                     <>
-                        <Link to="/">Home</Link>
-                        <Link to="/category">Category</Link>
-                        <Link to="/entry">New Entry</Link>
-
                         <Route exact path="/" component={HomePage} />
                         <Route exact path="/category" render={(props) => {
                             return <CategorySelectionPage {...props} categories={categories} />
                         }} />
-                        <Route exact path="/entry/new/:id" component={NewEntryPage} />
+                        <Route exact path="/entry/new/:id" render={(props) => {
+                            return <NewEntryPage {...props} categories={categories} />
+                        }} />
                     </>
                 </BrowserRouter>
             </div>
