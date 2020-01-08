@@ -2,10 +2,19 @@ import React, { Component } from "react";
 import CategorySelectionPage from "./pages/CategorySelectionPage";
 import HomePage from "./pages/HomePage";
 import NewEntryPage from "./pages/NewEntryPage";
-import { BrowserRouter, Route, Link } from "react-router-dom";
+import { BrowserRouter, Route } from "react-router-dom";
 
 class App extends Component {
-    state = { categories: ["personal", "travel", "dating"]}
+    state = { 
+        categories: ["personal", "travel", "dating"],
+        entries: []
+    }
+
+    onEntryFormSubmit = (entry) => {
+        this.setState((state, props) => {
+            return { entries: [...state.entries, entry] };
+        });
+    }
     
     render() {
         const { categories } = this.state;
@@ -19,7 +28,13 @@ class App extends Component {
                             return <CategorySelectionPage {...props} categories={categories} />
                         }} />
                         <Route exact path="/entry/new/:id" render={(props) => {
-                            return <NewEntryPage {...props} categories={categories} />
+                            return (
+                                <NewEntryPage 
+                                    {...props} 
+                                    categories={categories} 
+                                    onEntryFormSubmit={this.onEntryFormSubmit} 
+                                />
+                            )
                         }} />
                     </>
                 </BrowserRouter>
