@@ -20,16 +20,18 @@ class App extends Component {
         }
     }
 
-    changeLocation(location) {
-        this.setState({ location });
+    changeLocation = (location) => {
+        return () => {
+            this.setState({ location });
+        }
     }
     
     render() {
         return (
             <div>
-                <button>Home</button>
-                <button>Category Selection</button>
-                <button onClick={} >New Entry</button>
+                <button onClick={this.changeLocation("home")}>Home</button>
+                <button onClick={this.changeLocation("categorySelection")}>Category Selection</button>
+                <button onClick={this.changeLocation("newEntry")} >New Entry</button>
                 {this.getPage()}
             </div>
         );
