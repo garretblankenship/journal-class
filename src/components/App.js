@@ -5,9 +5,11 @@ import NewEntryPage from "./pages/NewEntryPage";
 import { BrowserRouter, Route, Link } from "react-router-dom";
 
 class App extends Component {
-    
+    state = { categories: ["personal", "travel", "dating"]}
     
     render() {
+        const { categories } = this.state;
+        
         return (
             <div>
                 <BrowserRouter>
@@ -17,7 +19,9 @@ class App extends Component {
                         <Link to="/entry">New Entry</Link>
 
                         <Route exact path="/" component={HomePage} />
-                        <Route exact path="/category" component={CategorySelectionPage} />
+                        <Route exact path="/category" render={(props) => {
+                            return <CategorySelectionPage {...props} categories={categories} />
+                        }} />
                         <Route exact path="/entry" component={NewEntryPage} />
                     </>
                 </BrowserRouter>
