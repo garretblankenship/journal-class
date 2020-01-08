@@ -9,7 +9,7 @@ class EntryForm extends Component {
 
     onFormSubmit = (event) => {
         event.preventDefault();
-        const { onEntryFormSubmit, category } = this.props;
+        const { onEntryFormSubmit, category, history } = this.props;
         const { entry } = this.state;
 
         if (!entry) {
@@ -18,7 +18,7 @@ class EntryForm extends Component {
 
         onEntryFormSubmit({ category, entry });
         this.setState({ entry: "", errorMessage: null});
-        
+        history.push("/");
     }
 
     render() {

@@ -18,7 +18,7 @@ class NewEntryPage extends Component {
     
     render() {
         const { errorMessage, category } = this.state;
-        const { onEntryFormSubmit } = this.props;
+        const { onEntryFormSubmit, history } = this.props;
 
         return (
             <>
@@ -26,7 +26,7 @@ class NewEntryPage extends Component {
             { category && 
                 <>
                     <h1>New {category} entry</h1>
-                    <EntryForm onEntryFormSubmit={onEntryFormSubmit} category={category} />
+                    <EntryForm onEntryFormSubmit={onEntryFormSubmit} category={category} history={history} />
                     <div>
                         <Link to="/category"><button>Back</button></Link>
                     </div>
